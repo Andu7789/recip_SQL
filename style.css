@@ -13,8 +13,9 @@
 
 #containerRecipesCards, #containerRecipesCardsDelete {
   display: grid;
-  grid-template-columns: repeat(6, 1fr); /* Default for larger screens */
+  grid-template-columns: repeat(7, 1fr); /* Default for larger screens */
   grid-template-rows: auto 1fr;
+  justify-items: center; /* Center items horizontally */
 }
 
 /* Media query for smaller screens */
@@ -22,6 +23,7 @@
   #containerRecipesCards, #containerRecipesCardsDelete {
     grid-template-columns: repeat(2, 1fr); /* Reduce columns for mobile */
     grid-template-rows: auto 1fr;
+    justify-items: center; /* Center items horizontally */
   }
 }
 

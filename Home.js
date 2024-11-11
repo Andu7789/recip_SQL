@@ -516,7 +516,7 @@ function buildRecipeCards(data) {
     productDiv.style.padding = "10px";
     productDiv.style.margin = "0 10px 10px 0";
     productDiv.style.textAlign = "center";
-    productDiv.style.width = "220px";
+    productDiv.style.width = "180px";
     productDiv.style.display = "flex";
     productDiv.style.flexDirection = "column";
     productDiv.style.minHeight = "300px";
@@ -593,7 +593,7 @@ function buildRecipeCards(data) {
 
     const addButton = document.createElement("button");
     addButton.textContent = "Amend";
-    //addButton.style.marginRight = "1px";
+    addButton.style.marginRight = "3px";
     addButton.classList.add("btn", "btn-success");
 
     const noteTextarea1 = recipe.noteTextarea || "";
