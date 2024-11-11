@@ -438,6 +438,7 @@ showRecipeBtn.addEventListener("click", () => {
     containerRecipesDeleteError.classList.add("hidden");
     recipeSearch.value = "";
     recipeSearch.focus();
+    displaynoteTextareaContainer.classList.add("d-none");
 
     searchRecipes()
 
@@ -567,14 +568,17 @@ function buildRecipeCards(data) {
       imageElement.addEventListener('click', () => {
         document.getElementById("displaynoteTextareaContainer").classList.remove("d-none");
         document.getElementById("displaynoteTextarea").value = recipe.otherTextarea;
+        scrollIntoView("displaynoteTextareaContainer")
       });
       card.addEventListener('click', () => {
         document.getElementById("displaynoteTextareaContainer").classList.remove("d-none");
         document.getElementById("displaynoteTextarea").value = recipe.otherTextarea;
+        scrollIntoView("displaynoteTextareaContainer")
       });
       book.addEventListener('click', () => {
         document.getElementById("displaynoteTextareaContainer").classList.remove("d-none");
         document.getElementById("displaynoteTextarea").value = recipe.otherTextarea;
+        scrollIntoView("displaynoteTextareaContainer")
       });
     }
 
@@ -639,6 +643,13 @@ closeBtnNotesTextArea.addEventListener("click", () => {
   document.getElementById("displaynoteTextareaContainer").classList.add("d-none");
 })
 
+function scrollIntoView(element) {
+  console.log(element);
+  const item = document.getElementById(element);
+  console.log(item);
+  item.focus();
+  item.scrollIntoView({ behavior: "smooth", block: "center" });
+}
 function renderPaginationControls(data) {
   const paginationContainer = document.getElementById('paginationContainer');
   paginationContainer.innerHTML = ""; // Clear previous pagination buttons
