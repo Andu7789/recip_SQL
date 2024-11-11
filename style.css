@@ -25,12 +25,7 @@
   }
 }
 
-/* @media (max-width: 480px) { /* For even smaller screens */
-  #containerRecipesCards, #containerRecipesCardsDelete {
-    grid-template-columns: 1fr; /* Single column layout for very small screens */
-    grid-template-rows: auto 1fr;
-  }
-} */
+
 
 
 
