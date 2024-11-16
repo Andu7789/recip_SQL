@@ -20,9 +20,9 @@ const db = new sqlite3.Database("recipes.sqlite", (err) => {
   }
 });
 
-app.get('/download-db', (req, res) => {
+app.get('/down', (req, res) => {
   const file = path.resolve(__dirname, 'recipes.sqlite');
-  res.download(file, 'database.db', (err) => {
+  res.download(file, 'recipes_backup.sqlite', (err) => {
     if (err) {
       console.error('Error downloading file:', err);
     }
