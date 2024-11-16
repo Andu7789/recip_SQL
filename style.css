@@ -25,7 +25,13 @@
     grid-template-rows: auto 1fr;
     justify-items: center; /* Center items horizontally */
   }
+
+  #displaynoteTextarea {
+    width: 80%; /* Reduce width for mobile */
+  }
+
 }
+
 
 
 
