@@ -20,6 +20,16 @@ const db = new sqlite3.Database("recipes.sqlite", (err) => {
   }
 });
 
+app.get('/download-db', (req, res) => {
+  const file = path.resolve(__dirname, 'recipes.sqlite');
+  res.download(file, 'database.db', (err) => {
+    if (err) {
+      console.error('Error downloading file:', err);
+    }
+  });
+});
+
+
 // Create tables if they don't exist
 function initializeDatabase() {
   db.serialize(() => {
