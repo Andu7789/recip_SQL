@@ -475,7 +475,7 @@ function searchRecipes() {
 }
 
 let currentPage = 1;
-const itemsPerPage = 24; // Number of recipes per page
+const itemsPerPage = 28; // Number of recipes per page
 let totalPages;
 
 function buildRecipeCards(data) {
