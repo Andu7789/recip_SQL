@@ -8,6 +8,10 @@ let count = 1
 let recipeImageURL = null;
 var thisweekbtnclicked = false
 
+document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("showRecipeBtn").click();
+});
+
 const recipeCardsContainer = document.getElementById("containerRecipesCards");
 const containerRecipesCardsError = document.getElementById("containerRecipesCardsError");
 const containerRecipesDeleteError = document.getElementById("containerRecipesDeleteError");
