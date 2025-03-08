@@ -36,8 +36,6 @@ bookBtn.addEventListener('click', () => {
 });
 
 
-//document.getElementById("recipeImage").addEventListener("change", recipeImageUpload);
-
 function recipeImageUpload(event) {
   const fileInput = event.target;
   const files = fileInput.files;
@@ -958,11 +956,10 @@ function TWUpdate(recipeNumber) {
 }
 
 thisWeekBtn.addEventListener("click", thisWeekRecipes);
+
 function thisWeekRecipes() {
 
   thisweekbtnclicked = true
-
-  
   recipevaluesToSearchFor = "This Week"
   containerAddRecipeDetails.classList.add("d-none");
 
