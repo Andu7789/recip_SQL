@@ -12,8 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("showRecipeBtn").click();
 });
 
+document.getElementById("cancelAddRecipeBtn").addEventListener("click", function () {
+  document.getElementById("showRecipeBtn").click();
+});
+
 document.getElementById("ScrollBtn").addEventListener("click", function () {
-  document.getElementById("recipeSearch").scrollIntoView({ behavior: "smooth", block: "center" });
+  document.getElementById("ScrollBtnTop").scrollIntoView({ behavior: "smooth", block: "center" });
 });
 
 document.getElementById("ScrollBtnTop").addEventListener("click", function () {
@@ -29,6 +33,8 @@ const containerRecipesDeleteError = document.getElementById("containerRecipesDel
 const containerRecipesCardsDelete = document.getElementById("containerRecipesCardsDelete");
 const containerSearch = document.getElementById("containerSearch");
 const containerAddRecipeDetails = document.getElementById("containerAddRecipeDetails");
+const scrollBtn = document.getElementById("ScrollBtn");
+const scrollBtnTop = document.getElementById("ScrollBtnTop");
 
 const test = document.getElementById("test");
 
@@ -292,6 +298,8 @@ addRecipeBtn.addEventListener("click", showAddRecipeSection);
     paginationContainer.classList.add("d-none");
     containerRecipesCardsDelete.classList.add("d-none");
     containerRecipesCardsError.classList.add("d-none");
+    scrollBtnTop.classList.add("d-none");
+    scrollBtn.classList.add("d-none");
     
   }
 
@@ -433,6 +441,7 @@ const recipeSearch = document.getElementById("recipeSearch");
 let recipevaluesToSearchFor = "";
 
 showRecipeBtn.addEventListener("click", () => {
+  console.log("showRecipeBtn clicked");
 
     countRecipes()
     countMadeRecipes()
@@ -452,6 +461,9 @@ showRecipeBtn.addEventListener("click", () => {
     recipeSearch.value = "";
     recipeSearch.focus();
     displaynoteTextareaContainer.classList.add("d-none");
+    scrollBtnTop.classList.remove("d-none");
+    scrollBtn.classList.remove("d-none");
+    console.log();
 
     searchRecipes()
 
@@ -465,9 +477,8 @@ showRecipeBtn.addEventListener("click", () => {
 
 SearchBtn.addEventListener("click", searchRecipes);
 function searchRecipes() {
-  //containerRecipesCards.classList.add("border","border-dark"); // Add the border border-dark
-  recipevaluesToSearchFor = recipeSearch.value;
 
+  recipevaluesToSearchFor = recipeSearch.value;
   const requestBody = { labelsArray: recipevaluesToSearchFor };
 
   fetch("/api/POSTFindSearchItems", {
@@ -502,9 +513,6 @@ function buildRecipeCards(data) {
   const endIndex = startIndex + itemsPerPage;
   const paginatedData = data.slice(startIndex, endIndex);
 
-  // Clear previous content
-
-  //containerRecipesCards
   recipeCardsContainer.classList.remove("d-none");
   containerRecipesCardsDelete.classList.remove("border", "border-dark");
   recipeCardsContainer.innerHTML = "";
@@ -974,6 +982,11 @@ function thisWeekRecipes() {
   thisweekbtnclicked = true
   recipevaluesToSearchFor = "This Week"
   containerAddRecipeDetails.classList.add("d-none");
+  scrollBtnTop.classList.add("d-none");
+  scrollBtn.classList.add("d-none");
+  containerRecipesCardsDelete.classList.add("d-none");
+
+
 
   const requestBody = { labelsArray: recipevaluesToSearchFor };
 
