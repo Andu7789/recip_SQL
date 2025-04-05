@@ -138,9 +138,7 @@ app.post("/api/sendRecipeToDBAPI", async (req, res) => {
 
 app.post('/api/POSTFindSearchItems', (req, res) => {
   const searchString = req.body.labelsArray;
-  if (!searchString) {
-    //return res.status(400).json({ error: "Search string required" });
-  }
+
   const searchTerms = searchString.trim().split(/\s+/);
   const placeholders = searchTerms.map(() => '?').join(' OR label LIKE ');
   const searchParams = searchTerms.map(term => `%${term}%`);
@@ -448,10 +446,10 @@ app.post('/api/POSTFindSearchItemsThisWeek', (req, res) => {
 });
 
 app.post('/api/POSTFindSearchItemsToBeMade', (req, res) => {
-  const searchString = req.body.labelsArray;
+  const searchParams = req.body.labelsArray;
 
   const query = `
-    SELECT r.*, GROUP_CONCAT(rl.label) as labelsArray
+    SELECT DISTINCT r.*, GROUP_CONCAT(rl.label) as labelsArray
     FROM recipes r
     JOIN recipe_labels rl ON r.recipeNumber = rl.recipeId
     WHERE rl.label LIKE ?
@@ -459,9 +457,9 @@ app.post('/api/POSTFindSearchItemsToBeMade', (req, res) => {
     ORDER BY r.recipeName ASC
   `;
 
-  db.all(query, [`%${searchString}%`], (err, rows) => {
+  db.all(query, searchParams, (err, rows) => {
     if (err) {
-      console.error('POSTFindSearchItemsToBeMade:', err);
+      console.error('POSTFindSearchItems:', err);
       res.status(500).json({ error: "Internal Server Error" });
     } else {
       // Convert labelsArray from string back to array

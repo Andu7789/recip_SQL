@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("showRecipeBtn").click();
 });
 
+document.getElementById("ScrollBtn").addEventListener("click", function () {
+  document.getElementById("recipeSearch").scrollIntoView({ behavior: "smooth", block: "center" });
+  console.log("Scroll button clicked");
+});
+
 const recipeCardsContainer = document.getElementById("containerRecipesCards");
 const containerRecipesCardsError = document.getElementById("containerRecipesCardsError");
 const containerRecipesDeleteError = document.getElementById("containerRecipesDeleteError");
@@ -469,8 +474,8 @@ function searchRecipes() {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       buildRecipeCards(data);
+      console.log(data);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -605,6 +610,7 @@ function buildRecipeCards(data) {
     const noteTextarea1 = recipe.noteTextarea || "";
     const otherTextarea1 = recipe.otherTextarea || "";
     addButton.onclick = () => {
+      console.log(recipe.recipeName),
       amendRecipe(
         recipe.recipeName,
         recipe.labelsArray,
@@ -678,8 +684,6 @@ function renderPaginationControls(data) {
 
 function amendRecipe(recipeName, labelsArray2, recipeImage, recipeLocation, URLorBook, recipeNumber, noteTextarea, otherTextarea) {
 
-  //containerSearch.classList.toggle("hidden");
-  //containerAddRecipeDetails.classList.toggle("hidden");
   containerAddRecipeDetails.classList.remove("d-none");
   document.getElementById("recipeName").value = recipeName
   document.getElementById("URLorBook").value = URLorBook
@@ -757,26 +761,26 @@ function amendRecipe(recipeName, labelsArray2, recipeImage, recipeLocation, URLo
 
 deleteRecipeBtn.addEventListener("click", showDeleteSection);
 
-  function showDeleteSection() {
+function showDeleteSection() {
 
-    thisweekbtnclicked = false
-    containerRecipesCards.classList.remove("border","border-dark");
-    recipeCardsContainer.innerHTML = "";
-    containerSearch.classList.add("d-none");
-    containerAddRecipeDetails.classList.add("d-none");
-    containerRecipesCardsDelete.classList.add("border","border-dark"); 
-    containerRecipesCardsDelete.classList.remove("d-none");
-    containerRecipesCardsError.classList.add("d-none");
-    
+  thisweekbtnclicked = false
+  containerRecipesCards.classList.remove("border","border-dark");
+  recipeCardsContainer.innerHTML = "";
+  containerSearch.classList.add("d-none");
+  containerAddRecipeDetails.classList.add("d-none");
+  containerRecipesCardsDelete.classList.add("border","border-dark"); 
+  containerRecipesCardsDelete.classList.remove("d-none");
+  containerRecipesCardsError.classList.add("d-none");
 
-    fetch("/api/getRecipes")
-    .then((response) => response.json())
-    .then((data) => {
-      buildDeleteTable(data);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+
+  fetch("/api/getRecipes")
+  .then((response) => response.json())
+  .then((data) => {
+    buildDeleteTable(data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
 }
 
 function buildDeleteTable(data) {
@@ -894,7 +898,6 @@ function countRecipes() {
     })
     .then((data) => {
       const recipeCount = data.count;
-      console.log("Number of recipes:", recipeCount);
       
       // You can now use the recipeCount value as needed
       // For example, displaying it in the DOM
@@ -923,7 +926,6 @@ function countMadeRecipes() {
     })
     .then((data) => {
       const madeCount = data.count;
-      console.log("Number of recipes with 'made':", madeCount);
 
       document.getElementById('madeRecipeCountDisplay').innerText = `Recipes "To be made": ${madeCount}`;
     })
@@ -1020,10 +1022,6 @@ listItems.forEach( (item) => {
 
   })
  
-
-  // containerRecipesCards.classList.remove("d-none")
-  // containerSearch.classList.remove("d-none");
-  // paginationContainer.classList.remove("d-none");
   containerAddRecipeDetails.classList.add("d-none");
   
   recipevaluesToSearchFor = "to be made"
