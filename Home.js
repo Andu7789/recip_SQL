@@ -14,8 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.getElementById("ScrollBtn").addEventListener("click", function () {
   document.getElementById("recipeSearch").scrollIntoView({ behavior: "smooth", block: "center" });
-  console.log("Scroll button clicked");
 });
+
+document.getElementById("ScrollBtnTop").addEventListener("click", function () {
+  document.getElementById("ScrollBtn").scrollIntoView({ behavior: "smooth", block: "center" });
+});
+
+
+
 
 const recipeCardsContainer = document.getElementById("containerRecipesCards");
 const containerRecipesCardsError = document.getElementById("containerRecipesCardsError");
