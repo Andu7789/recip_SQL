@@ -354,10 +354,10 @@ app.get('/api/countRecipes', (req, res) => {
 
 app.get('/api/countMadeRecipes', (req, res) => {
   const query = `
-    SELECT COUNT(DISTINCT recipeId) as count
-    FROM recipe_labels
-    WHERE label LIKE '%to be made%'
-  `;
+    SELECT COUNT(DISTINCT r.recipeNumber) as count
+    FROM recipes r
+    JOIN recipe_labels rl ON r.recipeNumber = rl.recipeId
+    WHERE rl.label LIKE '%to be made%';`
 
   db.get(query, [], (err, row) => {
     if (err) {

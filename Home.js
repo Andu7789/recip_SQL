@@ -441,7 +441,6 @@ const recipeSearch = document.getElementById("recipeSearch");
 let recipevaluesToSearchFor = "";
 
 showRecipeBtn.addEventListener("click", () => {
-  console.log("showRecipeBtn clicked");
 
     countRecipes()
     countMadeRecipes()
@@ -492,7 +491,6 @@ function searchRecipes() {
     .then((response) => response.json())
     .then((data) => {
       buildRecipeCards(data);
-      console.log(data);
     })
     .catch((error) => {
       console.error("Error:", error);
@@ -899,7 +897,7 @@ function deleteRecipeErrormessage() {
 
 function countRecipes() {
   fetch("/api/countRecipes", {
-    method: "GET", // Assuming a GET request, change to POST if needed
+    method: "GET", 
     headers: {
       "Content-Type": "application/json",
     }
@@ -913,8 +911,6 @@ function countRecipes() {
     .then((data) => {
       const recipeCount = data.count;
       
-      // You can now use the recipeCount value as needed
-      // For example, displaying it in the DOM
       document.getElementById('recipeCountDisplay').innerText = `Total Recipes: ${recipeCount}`;
     })
     .catch((error) => {
@@ -986,8 +982,6 @@ function thisWeekRecipes() {
   scrollBtn.classList.add("d-none");
   containerRecipesCardsDelete.classList.add("d-none");
 
-
-
   const requestBody = { labelsArray: recipevaluesToSearchFor };
 
   fetch("/api/POSTFindSearchItemsThisWeek", {
@@ -1042,9 +1036,7 @@ listItems.forEach( (item) => {
   })
  
   containerAddRecipeDetails.classList.add("d-none");
-  
   recipevaluesToSearchFor = "to be made"
-
   const requestBody = { labelsArray: recipevaluesToSearchFor };
 
   fetch("/api/POSTFindSearchItemsToBeMade", {
@@ -1058,7 +1050,6 @@ listItems.forEach( (item) => {
     .then((response) => response.json())
     .then((data) => {
       buildRecipeCards(data);
-      console.log(data);
     })
     .catch((error) => {
       console.error("Error:", error);
