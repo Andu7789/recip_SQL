@@ -6,12 +6,15 @@
     "sqlite3": "^5.1.7"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node Server.js"
   },
   "name": "trading",
   "version": "1.0.0",
   "main": "Server.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "engines": {          
+    "node": "22.x"
+  }
 }
