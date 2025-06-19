@@ -93,8 +93,6 @@ function recipeImageUpload(event) {
   }
 }
 
-
-
 document.getElementById('recipeImage').addEventListener('change', function(event) {
     event.preventDefault();
 
